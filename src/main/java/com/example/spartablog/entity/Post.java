@@ -29,4 +29,12 @@ public class Post extends Timestamped {
         this.description = requestDto.getDescription();
         this.user = user;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

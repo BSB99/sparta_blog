@@ -10,6 +10,7 @@ import com.example.spartablog.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,6 +35,20 @@ public class PostService {
 
     public PostDetailResponseDto getPost(Long postId) {
         return new PostDetailResponseDto(postCheck(postId));
+    }
+
+    @Transactional
+    public PostResponseDto updatePost(Long postId, User user, PostRequestDto postRequestDto) {
+        Post post = postCheck(postId);
+
+        if (!post.getUser().getUsername().equals(user.getUsername())) {
+            throw new IllegalArgumentException("게시글을 작성한 유저가 아닙니다.");
+        }
+
+        post.setTitle(postRequestDto.getTitle());
+        post.setDescription(postRequestDto.getDescription());
+
+        return new PostResponseDto(post);
     }
 
     private Post postCheck(Long id) {
