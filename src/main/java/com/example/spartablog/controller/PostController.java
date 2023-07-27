@@ -1,5 +1,6 @@
 package com.example.spartablog.controller;
 
+import com.example.spartablog.dto.ApiResponseDto;
 import com.example.spartablog.dto.PostDetailResponseDto;
 import com.example.spartablog.dto.PostResponseDto;
 import com.example.spartablog.dto.PostsResponseDto;
@@ -38,5 +39,10 @@ public class PostController {
     @PutMapping("/{postId}")
     public PostResponseDto updatePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody PostRequestDto postRequestDto) {
         return postService.updatePost(postId, userDetails.getUser(), postRequestDto);
+    }
+
+    @DeleteMapping("/{postId}")
+    public ApiResponseDto deletePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return postService.deletePost(postId, userDetails.getUser());
     }
 }

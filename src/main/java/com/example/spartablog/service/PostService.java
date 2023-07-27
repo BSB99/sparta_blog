@@ -1,5 +1,6 @@
 package com.example.spartablog.service;
 
+import com.example.spartablog.dto.ApiResponseDto;
 import com.example.spartablog.dto.PostDetailResponseDto;
 import com.example.spartablog.dto.PostResponseDto;
 import com.example.spartablog.dto.PostsResponseDto;
@@ -41,9 +42,7 @@ public class PostService {
     public PostResponseDto updatePost(Long postId, User user, PostRequestDto postRequestDto) {
         Post post = postCheck(postId);
 
-        if (!post.getUser().getUsername().equals(user.getUsername())) {
-            throw new IllegalArgumentException("게시글을 작성한 유저가 아닙니다.");
-        }
+        postValidation(post, user);
 
         post.setTitle(postRequestDto.getTitle());
         post.setDescription(postRequestDto.getDescription());
@@ -51,9 +50,25 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
+    public ApiResponseDto deletePost(Long postId, User user) {
+        Post post = postCheck(postId);
+
+        postValidation(post, user);
+
+        postRepository.delete(post);
+
+        return new ApiResponseDto("게시글 삭제 성공", 200);
+    }
+
     private Post postCheck(Long id) {
         return postRepository.findById(id).orElseThrow(() -> {
             throw new IllegalArgumentException("게시글이 존재하지 않습니다.");
         });
+    }
+
+    private void postValidation(Post post, User user) {
+        if (!post.getUser().getUsername().equals(user.getUsername())) {
+            throw new IllegalArgumentException("게시글을 작성한 유저가 아닙니다.");
+        }
     }
 }
