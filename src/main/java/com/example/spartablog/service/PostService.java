@@ -25,8 +25,7 @@ public class PostService {
     }
 
     public List<PostsResponseDto> getPosts() {
-        return postRepository.findAll().stream()
-                .map(PostsResponseDto::new)
-                .collect(Collectors.toList());
+        List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
+        return posts.stream().map(PostsResponseDto::new).collect(Collectors.toList());
     }
 }
