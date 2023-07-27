@@ -60,7 +60,7 @@ public class PostService {
         return new ApiResponseDto("게시글 삭제 성공", 200);
     }
 
-    private Post postCheck(Long id) {
+    public Post postCheck(Long id) {
         return postRepository.findById(id).orElseThrow(() -> {
             throw new IllegalArgumentException("게시글이 존재하지 않습니다.");
         });

@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.parameters.P;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -23,6 +26,9 @@ public class Post extends Timestamped {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+    private Set<Comment> commentList = new LinkedHashSet<>();
 
     public Post(PostRequestDto requestDto, User user) {
         this.title = requestDto.getTitle();
