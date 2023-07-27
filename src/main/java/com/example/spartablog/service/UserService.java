@@ -43,11 +43,11 @@ public class UserService {
     public ApiResponseDto signIn(SignInRequestDto requestDto, HttpServletResponse response) {
 
         User user = userRepository.findByUsername(requestDto.getUsername()).orElseThrow(
-                () -> new IllegalArgumentException("등록되지 않은 사용자입니다.")
+                () -> new IllegalArgumentException("닉네임 또는 패스워드를 확인해주세요.")
         );
 
         if(!passwordEncoder.matches(requestDto.getPassword(), user.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            throw new IllegalArgumentException("닉네임 또는 패스워드를 확인해주세요.");
         }
 
         String token = jwtUtil.createToken(user.getUsername());
