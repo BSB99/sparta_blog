@@ -1,5 +1,6 @@
 package com.example.spartablog.controller;
 
+import com.example.spartablog.dto.PostDetailResponseDto;
 import com.example.spartablog.dto.PostResponseDto;
 import com.example.spartablog.dto.PostsResponseDto;
 import com.example.spartablog.entity.PostRequestDto;
@@ -25,5 +26,10 @@ public class PostController {
     @GetMapping("")
     public List<PostsResponseDto> getPosts() {
         return postService.getPosts();
+    }
+
+    @GetMapping("/{postId}")
+    public PostDetailResponseDto getPost(@PathVariable Long postId) {
+        return postService.getPost(postId);
     }
 }
