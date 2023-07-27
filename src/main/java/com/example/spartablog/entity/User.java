@@ -1,6 +1,6 @@
 package com.example.spartablog.entity;
 
-import com.example.spartablog.dto.UserRequestDto;
+import com.example.spartablog.dto.SignUpRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,13 +17,13 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    private String nickname;
+    private String username;
 
     @Column(nullable = false)
     private String password;
 
-    public User(UserRequestDto requestDto) {
-        this.nickname = requestDto.getNickname();
+    public User(SignUpRequestDto requestDto) {
+        this.username = requestDto.getUsername();
         this.password = requestDto.getPassword();
     }
 }
