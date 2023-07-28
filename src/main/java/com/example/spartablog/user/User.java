@@ -1,4 +1,4 @@
-package com.example.spartablog.entity;
+package com.example.spartablog.user;
 
 import com.example.spartablog.dto.SignUpRequestDto;
 import jakarta.persistence.*;

@@ -1,7 +1,7 @@
 package com.example.spartablog.dto;
 
-import com.example.spartablog.entity.Comment;
-import com.example.spartablog.entity.Post;
+import com.example.spartablog.comment.Comment;
+import com.example.spartablog.post.Post;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

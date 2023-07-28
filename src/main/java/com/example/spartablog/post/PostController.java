@@ -1,14 +1,11 @@
-package com.example.spartablog.controller;
+package com.example.spartablog.post;
 
 import com.example.spartablog.dto.ApiResponseDto;
 import com.example.spartablog.dto.PostDetailResponseDto;
 import com.example.spartablog.dto.PostResponseDto;
 import com.example.spartablog.dto.PostsResponseDto;
-import com.example.spartablog.entity.Post;
-import com.example.spartablog.entity.PostRequestDto;
-import com.example.spartablog.entity.User;
+import com.example.spartablog.dto.PostRequestDto;
 import com.example.spartablog.security.UserDetailsImpl;
-import com.example.spartablog.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;

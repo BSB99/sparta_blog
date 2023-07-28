@@ -1,7 +1,7 @@
 package com.example.spartablog.security;
 
-import com.example.spartablog.entity.User;
-import com.example.spartablog.repository.UserRepository;
+import com.example.spartablog.user.User;
+import com.example.spartablog.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,6 +1,9 @@
-package com.example.spartablog.entity;
+package com.example.spartablog.comment;
 
 import com.example.spartablog.dto.CommentRequestDto;
+import com.example.spartablog.entity.Timestamped;
+import com.example.spartablog.user.User;
+import com.example.spartablog.post.Post;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,9 +1,12 @@
-package com.example.spartablog.entity;
+package com.example.spartablog.post;
 
+import com.example.spartablog.comment.Comment;
+import com.example.spartablog.dto.PostRequestDto;
+import com.example.spartablog.entity.Timestamped;
+import com.example.spartablog.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.parameters.P;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

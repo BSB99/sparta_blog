@@ -1,13 +1,11 @@
-package com.example.spartablog.service;
+package com.example.spartablog.comment;
 
-import ch.qos.logback.core.sift.AppenderFactoryUsingSiftModel;
 import com.example.spartablog.dto.ApiResponseDto;
 import com.example.spartablog.dto.CommentRequestDto;
 import com.example.spartablog.dto.CommentResponseDto;
-import com.example.spartablog.entity.Comment;
-import com.example.spartablog.entity.Post;
-import com.example.spartablog.entity.User;
-import com.example.spartablog.repository.CommentRepository;
+import com.example.spartablog.post.Post;
+import com.example.spartablog.user.User;
+import com.example.spartablog.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

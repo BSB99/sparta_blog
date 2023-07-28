@@ -1,8 +1,8 @@
 package com.example.spartablog.aop;
 
-import com.example.spartablog.entity.Comment;
+import com.example.spartablog.comment.Comment;
 import com.example.spartablog.security.UserDetailsImpl;
-import com.example.spartablog.service.CommentService;
+import com.example.spartablog.comment.CommentService;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -18,8 +18,8 @@ public class CommentValidationAspect {
         this.commentService = commentService;
     }
 
-    @Pointcut("execution(public * com.example.spartablog.controller.CommentController.deleteComment(..)) || " +
-            "execution(public * com.example.spartablog.controller.CommentController.updateComment(..))")
+    @Pointcut("execution(public * com.example.spartablog.comment.CommentController.deleteComment(..)) || " +
+            "execution(public * com.example.spartablog.comment.CommentController.updateComment(..))")
     public void commentMethods() {
     }
 

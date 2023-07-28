@@ -1,6 +1,6 @@
 package com.example.spartablog.dto;
 
-import com.example.spartablog.entity.Post;
+import com.example.spartablog.post.Post;
 import lombok.Getter;
 import lombok.Setter;
 

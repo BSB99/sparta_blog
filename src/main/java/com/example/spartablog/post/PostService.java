@@ -1,15 +1,12 @@
-package com.example.spartablog.service;
+package com.example.spartablog.post;
 
 import com.example.spartablog.dto.ApiResponseDto;
 import com.example.spartablog.dto.PostDetailResponseDto;
 import com.example.spartablog.dto.PostResponseDto;
 import com.example.spartablog.dto.PostsResponseDto;
-import com.example.spartablog.entity.Post;
-import com.example.spartablog.entity.PostRequestDto;
-import com.example.spartablog.entity.User;
-import com.example.spartablog.repository.PostRepository;
+import com.example.spartablog.dto.PostRequestDto;
+import com.example.spartablog.user.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +32,13 @@ public class PostService {
     }
 
     public PostDetailResponseDto getPost(Long postId) {
-        return new PostDetailResponseDto(postCheck(postId));
+        List<Post> postList= postRepository.findByIdFetchJoin(postId);
+
+        if (postList.isEmpty()) {
+           throw new IllegalArgumentException("게시글이 존재하지 않습니다");
+        }
+
+        return new PostDetailResponseDto(postList.get(0));
     }
 
     @Transactional

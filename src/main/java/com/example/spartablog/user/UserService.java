@@ -1,11 +1,9 @@
-package com.example.spartablog.service;
+package com.example.spartablog.user;
 
 import com.example.spartablog.dto.ApiResponseDto;
 import com.example.spartablog.dto.SignInRequestDto;
 import com.example.spartablog.dto.SignUpRequestDto;
-import com.example.spartablog.entity.User;
 import com.example.spartablog.jwt.JwtUtil;
-import com.example.spartablog.repository.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

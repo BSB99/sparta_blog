@@ -1,6 +1,6 @@
 package com.example.spartablog.security;
 
-import com.example.spartablog.entity.User;
+import com.example.spartablog.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

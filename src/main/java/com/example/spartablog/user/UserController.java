@@ -1,9 +1,9 @@
-package com.example.spartablog.controller;
+package com.example.spartablog.user;
 
 import com.example.spartablog.dto.ApiResponseDto;
 import com.example.spartablog.dto.SignInRequestDto;
 import com.example.spartablog.dto.SignUpRequestDto;
-import com.example.spartablog.service.UserService;
+import com.example.spartablog.user.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

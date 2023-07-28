@@ -1,4 +1,4 @@
-package com.example.spartablog.entity;
+package com.example.spartablog.dto;
 
 import lombok.Getter;
 

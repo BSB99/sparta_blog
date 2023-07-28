@@ -1,11 +1,8 @@
 package com.example.spartablog.aop;
 
-import com.example.spartablog.entity.Comment;
-import com.example.spartablog.entity.Post;
-import com.example.spartablog.entity.User;
-import com.example.spartablog.repository.PostRepository;
+import com.example.spartablog.post.Post;
 import com.example.spartablog.security.UserDetailsImpl;
-import com.example.spartablog.service.PostService;
+import com.example.spartablog.post.PostService;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -20,8 +17,8 @@ public class PostValidationAspect {
         this.postService = postService;
     }
 
-    @Pointcut("execution(public * com.example.spartablog.controller.PostController.updatePost(..)) || " +
-            "execution(public * com.example.spartablog.controller.PostController.deletePost(..))")
+    @Pointcut("execution(public * com.example.spartablog.post.PostController.updatePost(..)) || " +
+            "execution(public * com.example.spartablog.post.PostController.deletePost(..))")
     public void postMethods() {
     }
 

@@ -1,6 +1,5 @@
-package com.example.spartablog.repository;
+package com.example.spartablog.user;
 
-import com.example.spartablog.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
