@@ -7,6 +7,7 @@ import com.example.spartablog.dto.PostsResponseDto;
 import com.example.spartablog.dto.PostRequestDto;
 import com.example.spartablog.user.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,13 +33,7 @@ public class PostService {
     }
 
     public PostDetailResponseDto getPost(Long postId) {
-        List<Post> postList= postRepository.findByIdFetchJoin(postId);
-
-        if (postList.isEmpty()) {
-           throw new IllegalArgumentException("게시글이 존재하지 않습니다");
-        }
-
-        return new PostDetailResponseDto(postList.get(0));
+        return new PostDetailResponseDto(postCheck(postId));
     }
 
     @Transactional
@@ -65,4 +60,9 @@ public class PostService {
         });
     }
 
+    public List<PostsResponseDto> searchPost(String title, Pageable pageable) {
+        List<Post> posts = postRepository.findByTitleFetchJoin(title, pageable);
+
+        return posts.stream().map(PostsResponseDto::new).collect(Collectors.toList());
+    }
 }

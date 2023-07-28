@@ -2,6 +2,7 @@ package com.example.spartablog.post;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -13,11 +14,13 @@ public class PostRepositoryImpl implements PostCustomRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<Post> findByIdFetchJoin(Long id) {
+    public List<Post> findByTitleFetchJoin(String title, Pageable pageable) {
         return jpaQueryFactory
                 .selectFrom(post)
                 .leftJoin(post.user, user) // Join User entity
-                .where(post.id.eq(id))
+                .where(post.title.like("%" + title + "%"))
+                .offset(pageable.getOffset()) // 페이지 시작 오프셋
+                .limit(pageable.getPageSize()) // 페이지 크기
                 .fetch();
     }
 }

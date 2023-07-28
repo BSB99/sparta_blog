@@ -7,6 +7,7 @@ import com.example.spartablog.dto.PostsResponseDto;
 import com.example.spartablog.dto.PostRequestDto;
 import com.example.spartablog.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,11 @@ public class PostController {
     @GetMapping("/{postId}")
     public PostDetailResponseDto getPost(@PathVariable Long postId) {
         return postService.getPost(postId);
+    }
+
+    @GetMapping("/search")
+    public List<PostsResponseDto> searchPost(@RequestParam String title, Pageable pageable) {
+        return postService.searchPost(title, pageable);
     }
 
     @PutMapping("/{postId}")
