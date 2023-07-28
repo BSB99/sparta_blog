@@ -37,12 +37,12 @@ public class PostController {
     }
 
     @PutMapping("/{postId}")
-    public PostResponseDto updatePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody PostRequestDto postRequestDto) {
-        return postService.updatePost(postId, userDetails.getUser(), postRequestDto);
+    public PostResponseDto updatePost(@AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long postId, @RequestBody PostRequestDto postRequestDto) {
+        return postService.updatePost(postId, postRequestDto);
     }
 
     @DeleteMapping("/{postId}")
-    public ApiResponseDto deletePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return postService.deletePost(postId, userDetails.getUser());
+    public ApiResponseDto deletePost(@AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long postId) {
+        return postService.deletePost(postId);
     }
 }

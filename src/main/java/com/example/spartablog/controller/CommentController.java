@@ -23,7 +23,7 @@ public class CommentController {
 
     @PatchMapping("/{commentId}")
     public CommentResponseDto updateComment(@AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long commentId, @RequestBody CommentRequestDto requestDto) {
-        return commentService.updateComment(userDetails.getUser(), commentId, requestDto);
+        return commentService.updateComment(userDetails.getUser(),commentId, requestDto);
     }
 
     @DeleteMapping("/{commentId}")

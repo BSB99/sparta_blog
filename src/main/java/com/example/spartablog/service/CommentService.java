@@ -30,8 +30,6 @@ public class CommentService {
     public ApiResponseDto deleteComment(User user, Long commentId) {
         Comment comment = commentCheck(commentId);
 
-        commentValidation(comment, user);
-
         commentRepository.delete(comment);
 
         return new ApiResponseDto("댓글 삭제 성공", 200);
@@ -41,22 +39,14 @@ public class CommentService {
     public CommentResponseDto updateComment(User user, Long commentId, CommentRequestDto commentRequestDto) {
         Comment comment = commentCheck(commentId);
 
-        commentValidation(comment, user);
-
         comment.setContent(commentRequestDto.getContent());
 
         return new CommentResponseDto(comment);
     }
 
-    private Comment commentCheck(Long commentId) {
+    public Comment commentCheck(Long commentId) {
         return commentRepository.findById(commentId).orElseThrow(() -> {
             throw new IllegalArgumentException("댓글이 존재하지 않습니다.");
         });
-    }
-
-    private void commentValidation(Comment comment, User user) {
-        if (!comment.getUser().getUsername().equals(user.getUsername())) {
-            throw new IllegalArgumentException("댓글 작성한 회원이 아닙니다.");
-        }
     }
 }

@@ -39,10 +39,8 @@ public class PostService {
     }
 
     @Transactional
-    public PostResponseDto updatePost(Long postId, User user, PostRequestDto postRequestDto) {
+    public PostResponseDto updatePost(Long postId, PostRequestDto postRequestDto) {
         Post post = postCheck(postId);
-
-        postValidation(post, user);
 
         post.setTitle(postRequestDto.getTitle());
         post.setDescription(postRequestDto.getDescription());
@@ -50,10 +48,8 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
-    public ApiResponseDto deletePost(Long postId, User user) {
+    public ApiResponseDto deletePost(Long postId) {
         Post post = postCheck(postId);
-
-        postValidation(post, user);
 
         postRepository.delete(post);
 
@@ -66,9 +62,4 @@ public class PostService {
         });
     }
 
-    private void postValidation(Post post, User user) {
-        if (!post.getUser().getUsername().equals(user.getUsername())) {
-            throw new IllegalArgumentException("게시글을 작성한 유저가 아닙니다.");
-        }
-    }
 }
