@@ -26,8 +26,8 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
-    public List<PostsResponseDto> getPosts() {
-        List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
+    public List<PostsResponseDto> getPosts(Pageable pageable) {
+        List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc(pageable);
 
         return posts.stream().map(PostsResponseDto::new).collect(Collectors.toList());
     }

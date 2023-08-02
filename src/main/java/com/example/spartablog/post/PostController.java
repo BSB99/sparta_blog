@@ -25,8 +25,8 @@ public class PostController {
     }
 
     @GetMapping("")
-    public List<PostsResponseDto> getPosts() {
-        return postService.getPosts();
+    public List<PostsResponseDto> getPosts(Pageable pageable) {
+        return postService.getPosts(pageable);
     }
 
     @GetMapping("/{postId}")

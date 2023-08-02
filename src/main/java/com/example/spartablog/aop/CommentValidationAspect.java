@@ -27,7 +27,7 @@ public class CommentValidationAspect {
     public void validateCommentOwner(UserDetailsImpl user, Long commentId) {
         Comment comment = commentService.commentCheck(commentId);
 
-        if (!comment.getUser().getUsername().equals(user.getUsername())) { // -> 근데 이건 왜 통과함? ㅅ;빌아밀ㅇ;ㅈ맙리;ㅇㅂㅈ
+        if (!comment.getUser().getUsername().equals(user.getUsername())) {
             throw new IllegalArgumentException("댓글 작성한 회원이 아닙니다.");
         }
     }

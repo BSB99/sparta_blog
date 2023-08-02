@@ -17,7 +17,7 @@ public class PostRepositoryImpl implements PostCustomRepository {
     public List<Post> findByTitleFetchJoin(String title, Pageable pageable) {
         return jpaQueryFactory
                 .selectFrom(post)
-                .leftJoin(post.user, user) // Join User entity
+                .leftJoin(post.user, user)
                 .where(post.title.like("%" + title + "%"))
                 .offset(pageable.getOffset()) // 페이지 시작 오프셋
                 .limit(pageable.getPageSize()) // 페이지 크기
