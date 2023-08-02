@@ -33,7 +33,7 @@ public class UserService {
 
         requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
 
-        userRepository.save(new User(requestDto));
+        userRepository.save(new User(requestDto.getUsername(), requestDto.getPassword()));
 
         return new ApiResponseDto("회원가입 성공", 201);
     }

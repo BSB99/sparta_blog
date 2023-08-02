@@ -1,10 +1,9 @@
 package com.example.spartablog.user;
 
-import com.example.spartablog.dto.SignUpRequestDto;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Getter
@@ -21,8 +20,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public User(SignUpRequestDto requestDto) {
-        this.username = requestDto.getUsername();
-        this.password = requestDto.getPassword();
+    @Builder
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 }

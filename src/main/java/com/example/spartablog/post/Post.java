@@ -1,7 +1,6 @@
 package com.example.spartablog.post;
 
 import com.example.spartablog.comment.Comment;
-import com.example.spartablog.dto.PostRequestDto;
 import com.example.spartablog.entity.Timestamped;
 import com.example.spartablog.user.User;
 import jakarta.persistence.*;
@@ -33,9 +32,9 @@ public class Post extends Timestamped {
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private Set<Comment> commentList = new LinkedHashSet<>();
 
-    public Post(PostRequestDto requestDto, User user) {
-        this.title = requestDto.getTitle();
-        this.description = requestDto.getDescription();
+    public Post(String title, String description, User user) {
+        this.title = title;
+        this.description = description;
         this.user = user;
     }
 

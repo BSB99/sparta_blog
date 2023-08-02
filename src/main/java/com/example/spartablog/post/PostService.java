@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
-    public PostResponseDto createPost(User user, PostRequestDto postRequestDto) {
-        Post post = new Post(postRequestDto, user);
+    public PostResponseDto createPost(User user, PostRequestDto requestDto) {
+        Post post = new Post(requestDto.getTitle(), requestDto.getDescription(), user);
 
         postRepository.save(post);
 
@@ -55,9 +55,7 @@ public class PostService {
     }
 
     public Post postCheck(Long id) {
-        return postRepository.findById(id).orElseThrow(() -> {
-            throw new IllegalArgumentException("게시글이 존재하지 않습니다.");
-        });
+        return postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
     }
 
     public List<PostsResponseDto> searchPost(String title, Pageable pageable) {
