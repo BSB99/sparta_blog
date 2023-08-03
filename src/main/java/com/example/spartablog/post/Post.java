@@ -2,12 +2,15 @@ package com.example.spartablog.post;
 
 import com.example.spartablog.comment.Comment;
 import com.example.spartablog.entity.Timestamped;
+import com.example.spartablog.postImage.PostImage;
 import com.example.spartablog.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -31,6 +34,9 @@ public class Post extends Timestamped {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private Set<Comment> commentList = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "post", cascade = {CascadeType.ALL,CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    private List<PostImage> images = new ArrayList<>();
 
     public Post(String title, String description, User user) {
         this.title = title;
